@@ -2,6 +2,18 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
+  <script>
+  const PASSWORD = "0628"; // 這裡可以改密碼
+
+  const input = prompt("🔐 請輸入訪問密碼：");
+
+  if (input !== PASSWORD) {
+    document.write(
+      "<h2 style='color:#00ff66; background:#000; padding:2em; text-align:center; font-family:Courier New;'>❌ 密碼錯誤，訪問被拒絕。</h2>"
+    );
+    throw new Error("Password incorrect — access denied");
+  }
+</script>
   <meta charset="UTF-8" />
   <title>noiz@AI:~$</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
