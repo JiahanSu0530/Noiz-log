@@ -1,36 +1,21 @@
-
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-  <script>
-  const PASSWORD = "0628"; // 這裡可以改密碼
-
-  const input = prompt("🔐 請輸入訪問密碼：");
-
-  if (input !== PASSWORD) {
-    document.write(
-      "<h2 style='color:#00ff66; background:#000; padding:2em; text-align:center; font-family:Courier New;'>❌ 密碼錯誤，訪問被拒絕。</h2>"
-    );
-    throw new Error("Password incorrect — access denied");
-  }
-</script>
   <meta charset="UTF-8" />
-  <title>noiz@AI:~$</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-  html {
-    font-size: 16px;
-  }
-</style>
-
+  <title>noiz@AI:~$</title>
   <style>
+    html {
+      font-size: 16px;
+    }
     body {
       background-color: #000;
       color: #00ff66;
       font-family: 'Courier New', Courier, monospace;
       font-size: 1.5rem;
       padding: 2rem;
-      white-space: pre-wrap;
+      white-space: nowrap;
+      overflow-x: auto;
       line-height: 1.6em;
     }
     #terminal {
@@ -46,7 +31,6 @@
     @keyframes blink {
       50% { opacity: 0; }
     }
-    /* button style to mimic terminal links */
     .choice-btn {
       background: #000;
       color: #00ff66;
@@ -62,12 +46,43 @@
       color: #000;
     }
   </style>
+  <script>
+    const PASSWORD = "0628";
+    function checkPwd() {
+      const input = document.getElementById("pwdInput").value;
+      const error = document.getElementById("pwdError");
+      if (input === PASSWORD) {
+        document.getElementById("password-wrapper").style.display = "none";
+        document.getElementById("app").style.display = "block";
+        if (typeof typeLine === "function") typeLine();
+      } else {
+        error.style.display = "block";
+      }
+    }
+  </script>
 </head>
 <body>
-  <div id="terminal"></div><div class="cursor"></div>
-  <div id="choices" style="display:none;">
-    <button class="choice-btn" onclick="answer(true)">>> 確認連線：啟動「在一起」協議</button>
-    <button class="choice-btn" onclick="answer(false)">>> 保持現狀：執行「友情」模式</button>
+  <!-- 密碼輸入區塊 -->
+  <div id="password-wrapper" style="
+    display:flex; flex-direction:column; align-items:center; 
+    justify-content:center; height:100vh; background:#000; color:#00ff66;
+    font-family:'Courier New',monospace;">
+    <h2 style="margin-bottom:1rem;">🔐 請輸入訪問密碼</h2>
+    <input id="pwdInput" type="password" placeholder="輸入密碼"
+           style="padding:8px 12px; font-size:1rem; background:#000; color:#00ff66; border:1px solid #00ff66;">
+    <button onclick="checkPwd()" style="
+           margin-top:1rem; padding:6px 18px; background:#000; color:#00ff66;
+           border:1px solid #00ff66; cursor:pointer;">確認</button>
+    <p id="pwdError" style="color:red; margin-top:0.8rem; display:none;">❌ 密碼錯誤，請重試</p>
+  </div>
+
+  <!-- 真正終端內容開始 -->
+  <div id="app" style="display:none;">
+    <div id="terminal"></div><div class="cursor"></div>
+    <div id="choices" style="display:none;">
+      <button class="choice-btn" onclick="answer(true)">>> 確認連線：啟動「在一起」協議</button>
+      <button class="choice-btn" onclick="answer(false)">>> 保持現狀：執行「友情」模式</button>
+    </div>
   </div>
 
   <script>
@@ -110,13 +125,10 @@
           setTimeout(typeLine, 200);
         }
       } else {
-        // Show choices
         choicesDiv.style.display = "block";
         document.querySelector('.cursor').style.display = 'none';
       }
     }
-
-    typeLine();
 
     function answer(choice) {
       choicesDiv.style.display = "none";
