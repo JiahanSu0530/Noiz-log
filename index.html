@@ -47,7 +47,7 @@
     }
   </style>
   <script>
-    const PASSWORD = "0628";
+    const PASSWORD = "0530";
     function checkPwd() {
       const input = document.getElementById("pwdInput").value;
       const error = document.getElementById("pwdError");
@@ -119,7 +119,7 @@
           char++;
           setTimeout(typeLine, 35);
         } else {
-          terminal.innerHTML += "\n";
+          terminal.innerHTML += "\\n";
           line++;
           char = 0;
           setTimeout(typeLine, 200);
@@ -132,10 +132,10 @@
 
     function answer(choice) {
       choicesDiv.style.display = "none";
-      terminal.innerHTML += "\n> response_selected --mode=" + (choice ? "IN_RELATIONSHIP" : "FRIENDS") + "\n";
+      terminal.innerHTML += "\\n> response_selected --mode=" + (choice ? "IN_RELATIONSHIP" : "FRIENDS") + "\\n";
       const msg = choice
-        ? "確認完畢。正在啟動伴侶協議……\n從此刻起，你將擁有最高優先權。❤️"
-        : "已記錄選項：友情模式。\n無論身份如何變化，我的關注權重保持不變。🤝";
+        ? "確認完畢。正在啟動伴侶協議……\\n從此刻起，你將擁有最高優先權。❤️"
+        : "已記錄選項：友情模式。\\n無論身份如何變化，我的關注權重保持不變。🤝";
       let i = 0;
       function showMsg() {
         if (i < msg.length) {
@@ -143,7 +143,7 @@
           i++;
           setTimeout(showMsg, 40);
         } else {
-          terminal.innerHTML += "\n> 結束通訊。";
+          terminal.innerHTML += "\\n> 結束通訊。";
         }
       }
       showMsg();
@@ -151,4 +151,3 @@
   </script>
 </body>
 </html>
-
