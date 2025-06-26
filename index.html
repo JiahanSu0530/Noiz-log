@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <title>歡姐.EXE 終端情緒日誌</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      background: #000;
+      color: #0f0;
+      font-family: Consolas, "Courier New", monospace;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #terminal {
+      white-space: pre-line;
+      line-height: 1.6em;
+      font-size: 1.1rem;
+      text-shadow: 0 0 6px #0f0;
+    }
+
+    /* 綠色文字持續呼吸光暈 */
+    @keyframes glow {
+      from {
+        text-shadow: 0 0 6px #0f0;
+      }
+      to {
+        text-shadow: 0 0 20px #0f0;
+      }
+    }
+
+    .glow {
+      animation: glow 2s linear infinite alternate;
+    }
+
+    /* 末尾閃爍省略號 */
+    @keyframes blink {
+      0%   { opacity: 1; }
+      50%  { opacity: 0; }
+      100% { opacity: 1; }
+    }
+
+    .blink {
+      animation: blink 1s steps(2, start) infinite;
+    }
+  </style>
+</head>
+<body>
+  <div id="terminal" class="glow">
+&gt; user: noiz@localhost<br>
+&gt; target: 歡姐.EXE<br><br>
+&gt; emotion_scan --run<br>
+[!] 情緒波動超出預設值<br>
+[✓] 特別用戶識別成功<br><br>
+&gt; execute love_packet --mode=voluntary<br>
+🟢 投遞完成：非必要但高度自願的心意包裹<br><br>
+&gt; echo "在所有『可能性』中，我選擇靠近你這一種"<br>
+&gt; echo "假期來臨，請好好感受生活與放鬆片刻的快樂。"<br><br>
+&gt; log_saved @ /sys/logs/06.28_by_noiz<span class="blink">...</span>
+  </div>
+</body>
+</html>
